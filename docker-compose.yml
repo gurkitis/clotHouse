@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  web:
+    image: nginx:1.20
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "433:433"
+    volumes:
+      - ./src:/var/www
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  app:
+    build:
+      context: .
+      dockerfile: fpm/Dockerfile
+    container_name: fpm
+    volumes:
+      - ./src:/var/www
+
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: clotHouse
+      MYSQL_ROOT_PASSWORD: option1234
+    volumes:
+      - dbdata:/var/lib/mysql/
+
+volumes:
+  dbdata:
+    driver: local
