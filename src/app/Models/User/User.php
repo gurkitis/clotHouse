@@ -47,6 +47,9 @@ class User extends Model
         return $this->hasOne(Warehouse::class, 'warehouse', 'id');
     }
 
+    /**
+     * @var string[]
+     */
     protected $hidden = [
         'password'
     ];
