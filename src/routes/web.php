@@ -13,6 +13,7 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/user[/{id}]', [
+    'as' => 'user-show',
+    'uses' => 'User\User@show'
+]);
