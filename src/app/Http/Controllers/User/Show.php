@@ -12,7 +12,7 @@ use Laravel\Lumen\Http\ResponseFactory;
 use App\Http\Controllers\House\Warehouse;
 use App\Models\House\Warehouse as WarehouseModel;
 
-class User extends Controller
+class Show extends Controller
 {
     /**
      * user-show
