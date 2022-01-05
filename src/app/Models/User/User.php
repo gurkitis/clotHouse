@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Database\Factories\User\User as UserFactory;
 
+/**
+ * @method static firstWhere(string $string, array|string|null $post)
+ */
 class User extends Model
 {
     use HasFactory;
