@@ -2,10 +2,14 @@
 
 namespace App\Models\House;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\House\Warehouse as WarehouseFactory;
 
 class Warehouse extends Model
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -28,9 +32,23 @@ class Warehouse extends Model
         'address'
     ];
 
+    /**
+     * @var null[]
+     */
     protected $attributes = [
         'address' => NULL
     ];
 
+    /**
+     * @var bool
+     */
     public $timestamps = FALSE;
+
+    /**
+     * @return WarehouseFactory
+     */
+    public static function newFactory(): WarehouseFactory
+    {
+        return WarehouseFactory::new();
+    }
 }
