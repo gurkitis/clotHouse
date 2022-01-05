@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Database\Factories\User\Session as SessionFactory;
 
+/**
+ * @method static firstWhere(string $string, $id)
+ */
 class Session extends Model
 {
     use HasFactory;
