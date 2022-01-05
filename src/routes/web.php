@@ -13,15 +13,15 @@
 |
 */
 
-if (env('APP_ENV') === 'local') {
+if (in_array(env('APP_ENV'), ['local', 'testing'])) {
     $router->group(['prefix' => 'user/auth'], function () use($router) {
-        $router->get('user', ['middleware' => 'admin:user', function () {
+        $router->get('user', ['middleware' => 'auth:user', function () {
             return Response('user authorization successful');
         }]);
-        $router->get('admin', ['middleware' => 'admin:admin', function () {
+        $router->get('admin', ['middleware' => 'auth:admin', function () {
             return Response('admin authorization successful');
         }]);
-        $router->get('owner', ['middleware' => 'admin:owner', function () {
+        $router->get('owner', ['middleware' => 'auth:owner', function () {
             return Response('owner authorization successful');
         }]);
     });
