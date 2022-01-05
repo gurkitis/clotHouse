@@ -17,3 +17,8 @@ $router->get('/user[/{id}]', [
     'as' => 'user-show',
     'uses' => 'User\Show@show'
 ]);
+
+$router->post('/user/login', [
+    'as' => 'user-login',
+    'uses' => 'User\Login@login'
+]);
