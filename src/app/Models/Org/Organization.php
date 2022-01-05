@@ -2,10 +2,13 @@
 
 namespace App\Models\Org;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\Org\Organization as OrganizationFactory;
 
 class Organization extends Model
 {
+    use HasFactory;
     /**
      * @var string
      */
@@ -32,4 +35,12 @@ class Organization extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * @return OrganizationFactory
+     */
+    protected static function newFactory(): OrganizationFactory
+    {
+        return OrganizationFactory::new();
+    }
 }

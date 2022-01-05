@@ -3,11 +3,14 @@
 namespace App\Models\Org;
 
 use App\Models\User\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Database\Factories\Org\OrgUser as OrgUserFactory;
 
 class OrgUser extends Model
 {
+    use HasFactory;
     /**
      * @var string
      */
@@ -52,5 +55,13 @@ class OrgUser extends Model
     public function organization(): HasOne
     {
         return $this->hasOne(Organization::class, 'organization', 'id');
+    }
+
+    /**
+     * @return OrgUserFactory
+     */
+    protected static function newFactory(): OrgUserFactory
+    {
+        return OrgUserFactory::new();
     }
 }
