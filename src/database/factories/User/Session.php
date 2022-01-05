@@ -14,7 +14,7 @@ class Session extends Factory
     {
         return [
             'session_id' => hash('sha256', $this->faker->unique->password),
-            'last_request_at' => $this->faker->dateTime(),
+            'last_request_at' => date(DATE_ATOM),
             'user' => UserModel::factory()
         ];
     }

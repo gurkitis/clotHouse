@@ -33,19 +33,19 @@ class UserAuth
         }
 
         // Validate barer token age
-        if (date('U') - strtotime($session['last_request_at']) > strtotime('10 min', 0)) {
+        if (date('U') - strtotime($session['last_request_at']) > strtotime(env('AUTH_INTERVAL'), 0)) {
             return Response('please authenticate', 401);
         }
 
         // User exist in given organization
         $orgUser = OrgUser::where('organization', $request->get('org_id'))->where('user', $session['user'])->first();
         if (empty($orgUser)) {
-            return Response("user doesn't exist in organization");
+            return Response('user not found in organization', 404);
         }
 
         // User has access to the resource
         if (OrgUser::validateRole($orgUser->getRole(), $role) === FALSE) {
-            return Response('unauthorized access', 401);
+            return Response('access denied', 401);
         }
 
         // Set 'session' variables
