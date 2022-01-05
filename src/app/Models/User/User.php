@@ -3,11 +3,15 @@
 namespace App\Models\User;
 
 use App\Models\House\Warehouse;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Database\Factories\User\User as UserFactory;
 
 class User extends Model
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -53,4 +57,12 @@ class User extends Model
     protected $hidden = [
         'password'
     ];
+
+    /**
+     * @return UserFactory
+     */
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 }
