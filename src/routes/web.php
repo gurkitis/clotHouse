@@ -15,5 +15,5 @@
 
 $router->get('/user[/{id}]', [
     'as' => 'user-show',
-    'uses' => 'User\User@show'
+    'uses' => 'User\Show@show'
 ]);
