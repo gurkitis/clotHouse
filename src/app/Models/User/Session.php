@@ -2,11 +2,15 @@
 
 namespace App\Models\User;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Database\Factories\User\Session as SessionFactory;
 
 class Session extends Model
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -42,5 +46,10 @@ class Session extends Model
     public function user(): HasOne
     {
         return $this->hasOne(User::class, 'user', 'id');
+    }
+
+    protected static function newFactory()
+    {
+        return SessionFactory::new();
     }
 }
