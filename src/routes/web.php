@@ -13,6 +13,20 @@
 |
 */
 
+if (env('APP_ENV') === 'local') {
+    $router->group(['prefix' => 'user/auth'], function () use($router) {
+        $router->get('user', ['middleware' => 'admin:user', function () {
+            return Response('user authorization successful');
+        }]);
+        $router->get('admin', ['middleware' => 'admin:admin', function () {
+            return Response('admin authorization successful');
+        }]);
+        $router->get('owner', ['middleware' => 'admin:owner', function () {
+            return Response('owner authorization successful');
+        }]);
+    });
+}
+
 $router->get('/user[/{id}]', [
     'as' => 'user-show',
     'uses' => 'User\Show@show'
