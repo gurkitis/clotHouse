@@ -5,6 +5,7 @@ namespace App\Models\Org;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\Org\Organization as OrganizationFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Organization extends Model
 {
@@ -42,5 +43,13 @@ class Organization extends Model
     protected static function newFactory(): OrganizationFactory
     {
         return OrganizationFactory::new();
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function orgUsers(): HasMany
+    {
+        return $this->hasMany(OrgUser::class, 'organization');
     }
 }

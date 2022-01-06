@@ -61,7 +61,7 @@ class OrgUser extends Model
      */
     public function user(): HasOne
     {
-        return $this->hasOne(User::class, 'user', 'id');
+        return $this->hasOne(User::class, 'id', 'user');
     }
 
     /**
@@ -69,7 +69,7 @@ class OrgUser extends Model
      */
     public function organization(): HasOne
     {
-        return $this->hasOne(Organization::class, 'organization', 'id');
+        return $this->hasOne(Organization::class, 'id', 'organization');
     }
 
     /**

@@ -80,4 +80,12 @@ class User extends Model
     {
         return $this->hasMany(OrgUser::class, 'user');
     }
+
+    /**
+     * @return HasOne
+     */
+    public function session(): HasOne
+    {
+        return $this->hasOne(Session::class, 'user');
+    }
 }
