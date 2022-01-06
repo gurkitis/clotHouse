@@ -31,6 +31,11 @@ class UserEditTest extends TestCase
                 [$key => $value],
                 ['Authorization' => 'Bearer ' . $bearer]
             );
+            $this->assertEquals(422, $call->response->status(),
+                json_encode([
+                    $key => $value
+                ])
+            );
             $call->assertResponseStatus(422);
             $this->assertEquals('invalid input data', $call->response->content());
         }
@@ -73,12 +78,15 @@ class UserEditTest extends TestCase
         $email = \App\Models\User\User::factory()->make()['email'];
 
         // Test
-        $call = $this->put('/user/?org_id' . $org['id'],
+        $call = $this->put('/user/?org_id=' . $org['id'],
             [
                 'email' => $email,
                 'password' => 'tosteris'
             ],
             ['Authorization' => 'Bearer ' . $bearer]
+        );
+        $this->assertEquals(200, $call->response->status(),
+            $call->response->content()
         );
         $call->assertResponseStatus(200);
         $call->seeJsonEquals([
@@ -107,7 +115,7 @@ class UserEditTest extends TestCase
         $data = \App\Models\User\User::factory()->make();
 
         // Test
-        $call = $this->put('/user/?org_id' . $org['id'],
+        $call = $this->put('/user/?org_id=' . $org['id'],
             [
                 'name' => $data['name'],
                 'surname' => $data['surname']
