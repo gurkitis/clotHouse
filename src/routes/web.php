@@ -55,3 +55,11 @@ $router->group(['prefix' => 'user'], function () use ($router) {
         'middleware' => 'auth:user'
     ]);
 });
+
+$router->group(['prefix' => 'warehouse'], function () use ($router) {
+    $router->post('org', [
+        'as' => 'house-org-create',
+        'uses' => 'House\OrgCreate@create',
+        'middleware' => 'auth:owner'
+    ]);
+});
