@@ -56,6 +56,13 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     ]);
 });
 
+$router->group(['prefix' => 'org'], function () use ($router) {
+    $router->post('', [
+        'as' => 'org-create',
+        'uses' => 'Org\Create@create'
+    ]);
+});
+
 $router->group(['prefix' => 'warehouse'], function () use ($router) {
     $router->post('org', [
         'as' => 'house-org-create',
