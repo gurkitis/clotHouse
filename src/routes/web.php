@@ -25,6 +25,10 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
             return Response('owner authorization successful');
         }]);
     });
+
+    $router->get('org/user/auth', ['middleware' => 'auth:user orgUserAuth', function() {
+        return Response('user resource authorized');
+    }]);
 }
 
 $router->group(['prefix' => 'user'], function () use ($router) {
