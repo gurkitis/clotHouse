@@ -73,7 +73,8 @@ $app->configure('app');
 */
 
 $app->routeMiddleware([
-   'auth' => App\Http\Middleware\UserAuth::class
+    'auth' => App\Http\Middleware\UserAuth::class,
+    'orgUserAuth' => App\Http\Middleware\OrgUserAuth::class
 ]);
 
 /*

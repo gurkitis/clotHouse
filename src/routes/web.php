@@ -26,7 +26,7 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
         }]);
     });
 
-    $router->get('org/user/auth', ['middleware' => 'auth:user orgUserAuth', function() {
+    $router->get('org/user/auth', ['middleware' => ['auth:user', 'orgUserAuth'], function() {
         return Response('user resource authorized');
     }]);
 }
@@ -35,7 +35,7 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     $router->get('', [
         'as' => 'user-show',
         'uses' => 'User\Show@show',
-        'middleware' => 'auth:user'
+        'middleware' => ['auth:user', 'orgUserAuth']
     ]);
 
     $router->post('login', [

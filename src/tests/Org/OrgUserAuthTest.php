@@ -43,7 +43,7 @@ class OrgUserAuthTest extends TestCase
         $call = $this->get('org/user/auth/?org_id=' . $this->org['id'], [
             'Authorization' => 'Bearer ' . $this->bearer
         ]);
-        $call->assertResponseStatus('422');
+        $call->assertResponseStatus(422);
         $this->assertEquals('invalid input data', $call->response->content());
     }
 
@@ -57,7 +57,7 @@ class OrgUserAuthTest extends TestCase
         $call = $this->get('org/user/auth/?org_id=' . $this->org['id'] . '&user_id=' . ($this->user['id'] + 1), [
             'Authorization' => 'Bearer ' . $this->bearer
         ]);
-        $call->assertResponseStatus('400');
+        $call->assertResponseStatus(404);
         $this->assertEquals('user not found', $call->response->content());
     }
 
@@ -74,7 +74,7 @@ class OrgUserAuthTest extends TestCase
         $call = $this->get('org/user/auth/?org_id=' . $this->org['id'] . '&user_id=' . $user['id'], [
             'Authorization' => 'Bearer ' . $this->bearer
         ]);
-        $call->assertResponseStatus('403');
+        $call->assertResponseStatus(403);
         $this->assertEquals('denied access', $call->response->content());
     }
 
@@ -89,7 +89,7 @@ class OrgUserAuthTest extends TestCase
         $call = $this->get('org/user/auth/?org_id=' . $this->org['id'] . '&user_id=' . $orgUser['user'], [
             'Authorization' => 'Bearer ' . $this->bearer
         ]);
-        $call->assertResponseStatus('200');
+        $call->assertResponseStatus(200);
         $this->assertEquals('user resource authorized', $call->response->content());
     }
 
@@ -103,7 +103,7 @@ class OrgUserAuthTest extends TestCase
         $call = $this->get('org/user/auth/?org_id=' . $this->org['id'] . '&user_id=' . $this->user['id'], [
             'Authorization' => 'Bearer ' . $this->bearer
         ]);
-        $call->assertResponseStatus('200');
+        $call->assertResponseStatus(200);
         $this->assertEquals('user resource authorized', $call->response->content());
     }
 }
