@@ -42,3 +42,9 @@ $router->post('/user', [
     'uses' => 'User\Create@create',
     'middleware' => 'auth:owner'
 ]);
+
+$router->put('/user[/{id}]', [
+    'as' => 'user-edit',
+    'uses' => 'User\Edit@edit',
+    'middleware' => 'auth:user'
+]);
