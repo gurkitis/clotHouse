@@ -59,11 +59,11 @@ class UserCreateTest extends TestCase
         $session = Session::firstWhere('user', $user['id']);
 
         // Test
-        $call = $this->post('user/?org_id=' . $session['session_id'], [
+        $call = $this->post('user/?org_id=' . $org['id'], [
             'name' => $user['name'],
             'surname' => $user['surname'],
             'email' => $user['email'],
-            'password' => 'testins'
+            'password' => 'tosteris'
         ], ['Authorization' => 'Bearer ' . $session['session_id']]);
         $call->assertResponseStatus(400);
         $this->assertEquals('user already exists', $call->response->content());
@@ -83,7 +83,7 @@ class UserCreateTest extends TestCase
         $formData = User::factory()->make();
 
         // Test
-        $call = $this->post('user/?org_id=' . $session['session_id'], [
+        $call = $this->post('user/?org_id=' . $org['id'], [
             'name' => $formData['name'],
             'surname' => $formData['surname'],
             'email' => $formData['email'],
@@ -108,7 +108,7 @@ class UserCreateTest extends TestCase
         $formData->update(['password' => hash('sha256', 'tosteris')]);
 
         // Test
-        $call = $this->post('user/?org_id=' . $session['session_id'], [
+        $call = $this->post('user/?org_id=' . $org['id'], [
             'name' => $formData['name'],
             'surname' => $formData['surname'],
             'email' => $formData['email'],

@@ -3,14 +3,17 @@
 namespace App\Models\User;
 
 use App\Models\House\Warehouse;
+use App\Models\Org\OrgUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Database\Factories\User\User as UserFactory;
 
 /**
  * @method static firstWhere(string $string, array|string|null $post)
  * @method static orderByDesc(string $string)
+ * @method static orderByAsc(string $string)
  */
 class User extends Model
 {
@@ -68,5 +71,13 @@ class User extends Model
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(OrgUser::class, 'user');
     }
 }
