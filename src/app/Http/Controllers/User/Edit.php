@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class Edit extends Controller
 {
-    public function edit(Request $request, $id = NULL)
+    public function edit(Request $request)
     {
         // Validate form input data
         $rules = [
