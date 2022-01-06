@@ -36,3 +36,9 @@ $router->post('/user/login', [
     'as' => 'user-login',
     'uses' => 'User\Login@login'
 ]);
+
+$router->post('/user', [
+    'as' => 'user-create',
+    'uses' => 'User\Create@create',
+    'middleware' => 'auth:owner'
+]);
