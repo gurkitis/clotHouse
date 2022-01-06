@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laravel\Lumen\Http\ResponseFactory;
 
-class Warehouse extends Controller
+class Create extends Controller
 {
     /**
      * house-create

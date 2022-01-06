@@ -9,8 +9,6 @@ use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Http\ResponseFactory;
-use App\Http\Controllers\House\Warehouse;
-use App\Models\House\Warehouse as WarehouseModel;
 
 class Show extends Controller
 {
@@ -18,7 +16,6 @@ class Show extends Controller
      * user-show
      *
      * @param Request $request
-     * @param $id
      * @return Response|ResponseFactory
      */
     public function show(Request $request) {
