@@ -6,6 +6,8 @@ use App\Models\Org\Organization;
 
 class UserEditTest extends TestCase
 {
+    use DatabaseTransactions;
+    
     /**
      * Tests required form fields
      *
