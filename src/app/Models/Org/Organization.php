@@ -2,11 +2,15 @@
 
 namespace App\Models\Org;
 
+use App\Models\House\OrgHouse;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\Org\Organization as OrganizationFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @method static firstWhere(string $string, mixed $orgName)
+ */
 class Organization extends Model
 {
     use HasFactory;
@@ -51,5 +55,13 @@ class Organization extends Model
     public function orgUsers(): HasMany
     {
         return $this->hasMany(OrgUser::class, 'organization');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function orgHouses(): HasMany
+    {
+        return $this->hasMany(OrgHouse::class, 'organization');
     }
 }

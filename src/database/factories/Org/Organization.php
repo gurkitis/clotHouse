@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Org;
 
+use App\Models\House\OrgHouse;
 use App\Models\Org\Organization as Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Org\OrgUser;
@@ -13,7 +14,7 @@ class Organization extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique->company
+            'name' => $this->faker->unique()->company
         ];
     }
 
@@ -28,10 +29,16 @@ class Organization extends Factory
                 'is_owner' => TRUE,
                 'organization' => $organization->getAttribute('id')
             ]);
+            OrgHouse::factory()->make([
+                'organization' => $organization->getAttribute('id')
+            ]);
         })->afterCreating(function (Model $organization) {
             OrgUser::factory()->create([
                 'is_admin' => TRUE,
                 'is_owner' => TRUE,
+                'organization' => $organization->getAttribute('id')
+            ]);
+            OrgHouse::factory()->create([
                 'organization' => $organization->getAttribute('id')
             ]);
         });
