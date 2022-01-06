@@ -28,7 +28,7 @@ class Login extends Controller
                 'password' => 'required|string|min:8|max:255'
             ]);
         } catch (ValidationException $e) {
-            if (env('app_env') === 'local') {
+            if (env('APP_ENV') === 'local') {
                 return Response($e, 422);
             } else {
                 return Response('invalid input data', 422);
