@@ -27,9 +27,10 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
     });
 }
 
-$router->get('/user[/{id}]', [
+$router->get('/user', [
     'as' => 'user-show',
-    'uses' => 'User\Show@show'
+    'uses' => 'User\Show@show',
+    'middleware' => 'auth:user'
 ]);
 
 $router->post('/user/login', [

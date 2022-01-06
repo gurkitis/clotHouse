@@ -21,11 +21,12 @@ class Show extends Controller
      * @param $id
      * @return Response|ResponseFactory
      */
-    public function show(Request $request, $id = NULL) {
+    public function show(Request $request) {
         // Validate GET params
         try {
             $this->validate($request, [
-                'email' => 'nullable|email|min:5|max:255'
+                'email' => 'required_without:user_id|email|min:5|max:255',
+                'user_id' => 'required_without:email|integer'
             ]);
         } catch (ValidationException $e) {
             if (env('APP_ENV') === 'local') {
@@ -35,15 +36,10 @@ class Show extends Controller
             }
         }
 
-        // Validate URI params
-        if ($id === NULL && empty($request->get('email')) === TRUE) {
-            return Response('invalid input data', 422);
-        }
-
         // Search user
         $user = collect(UserModel::all());
-        if ($id !== NULL) {
-            $user = $user->where('id', $id);
+        if (empty($request->get('user_id')) === FALSE) {
+            $user = $user->where('id', $request->get('user_id'));
         }
         if (empty($request->get('email')) === FALSE) {
             $user = $user->where('email', $request->get('email'));
