@@ -10,6 +10,7 @@ use Database\Factories\User\User as UserFactory;
 
 /**
  * @method static firstWhere(string $string, array|string|null $post)
+ * @method static orderByDesc(string $string)
  */
 class User extends Model
 {
