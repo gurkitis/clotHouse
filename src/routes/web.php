@@ -27,25 +27,27 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
     });
 }
 
-$router->get('/user', [
-    'as' => 'user-show',
-    'uses' => 'User\Show@show',
-    'middleware' => 'auth:user'
-]);
+$router->group(['prefix' => 'user'], function () use ($router) {
+    $router->get('', [
+        'as' => 'user-show',
+        'uses' => 'User\Show@show',
+        'middleware' => 'auth:user'
+    ]);
 
-$router->post('/user/login', [
-    'as' => 'user-login',
-    'uses' => 'User\Login@login'
-]);
+    $router->post('login', [
+        'as' => 'user-login',
+        'uses' => 'User\Login@login'
+    ]);
 
-$router->post('/user', [
-    'as' => 'user-create',
-    'uses' => 'User\Create@create',
-    'middleware' => 'auth:owner'
-]);
+    $router->post('', [
+        'as' => 'user-create',
+        'uses' => 'User\Create@create',
+        'middleware' => 'auth:owner'
+    ]);
 
-$router->put('/user', [
-    'as' => 'user-edit',
-    'uses' => 'User\Edit@edit',
-    'middleware' => 'auth:user'
-]);
+    $router->put('', [
+        'as' => 'user-edit',
+        'uses' => 'User\Edit@edit',
+        'middleware' => 'auth:user'
+    ]);
+});
