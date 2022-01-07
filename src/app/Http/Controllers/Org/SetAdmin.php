@@ -10,7 +10,13 @@ use Illuminate\Validation\ValidationException;
 
 class SetAdmin extends Controller
 {
-    public function setAdmin(Request $request)
+    /**
+     * org-setAdmin
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function setAdmin(Request $request): Response
     {
         // Input data filed validation
         try {
