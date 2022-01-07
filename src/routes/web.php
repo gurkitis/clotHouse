@@ -73,6 +73,12 @@ $router->group(['prefix' => 'org'], function () use ($router) {
         'uses' => 'Org\Edit@edit',
         'middleware' => 'auth:owner'
     ]);
+
+    $router->post('admin', [
+        'as' => 'org-adminSet',
+        'uses' => 'Org\SetAdmin@setAdmin',
+        'middleware' => ['auth:owner', 'orgUserAuth']
+    ]);
 });
 
 $router->group(['prefix' => 'warehouse'], function () use ($router) {
