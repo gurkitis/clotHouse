@@ -29,6 +29,10 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
     $router->get('org/user/auth', ['middleware' => ['auth:user', 'orgUserAuth'], function() {
         return Response('user resource authorized');
     }]);
+
+    $router->get('warehouse/auth', ['middleware' => ['auth:user', 'houseAuth'], function () {
+        return Response('warehouse has been authorized');
+    }]);
 }
 
 $router->group(['prefix' => 'user'], function () use ($router) {
