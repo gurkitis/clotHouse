@@ -61,6 +61,12 @@ $router->group(['prefix' => 'org'], function () use ($router) {
         'as' => 'org-create',
         'uses' => 'Org\Create@create'
     ]);
+
+    $router->get('', [
+        'as' => 'org-show',
+        'uses' => 'Org\Show@show',
+        'middleware' => 'auth:user'
+    ]);
 });
 
 $router->group(['prefix' => 'warehouse'], function () use ($router) {
