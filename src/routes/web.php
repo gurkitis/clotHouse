@@ -67,6 +67,12 @@ $router->group(['prefix' => 'org'], function () use ($router) {
         'uses' => 'Org\Show@show',
         'middleware' => 'auth:user'
     ]);
+
+    $router->put('', [
+        'as' => 'org-edit',
+        'uses' => 'Org\Edit@edit',
+        'middleware' => 'auth:owner'
+    ]);
 });
 
 $router->group(['prefix' => 'warehouse'], function () use ($router) {
