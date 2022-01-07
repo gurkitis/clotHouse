@@ -75,7 +75,7 @@ $router->group(['prefix' => 'org'], function () use ($router) {
     ]);
 
     $router->post('admin', [
-        'as' => 'org-adminSet',
+        'as' => 'org-setAdmin',
         'uses' => 'Org\SetAdmin@setAdmin',
         'middleware' => ['auth:owner', 'orgUserAuth']
     ]);
@@ -84,6 +84,12 @@ $router->group(['prefix' => 'org'], function () use ($router) {
         'as' => 'org-user-index',
         'uses' => 'Org\UserIndex@userIndex',
         'middleware' => 'auth:user'
+    ]);
+
+    $router->delete('admin', [
+        'as' => 'org-removeAdmin',
+        'uses' => 'Org\RemoveAdmin@removeAdmin',
+        'middleware' => ['auth:owner', 'orgUserAuth']
     ]);
 });
 
