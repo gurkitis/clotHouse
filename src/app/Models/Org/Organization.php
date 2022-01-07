@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static firstWhere(string $string, mixed $orgName)
+ * @method static find(mixed $get)
  */
 class Organization extends Model
 {
