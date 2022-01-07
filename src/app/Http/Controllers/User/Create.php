@@ -10,9 +10,16 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use App\Models\User\User;
+use App\Http\Controllers\Org\UserCreate as OrgUserCreate;
 
 class Create extends Controller
 {
+    /**
+     * user-create
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function create(Request $request)
     {
         // Validate input form data
@@ -69,14 +76,15 @@ class Create extends Controller
             $session->save();
         }
 
-        $orgUser = new OrgUser();
-        $orgUser->fill([
-            'is_admin' => FALSE,
-            'is_owner' => FALSE,
-            'user' => $user['id'],
-            'organization' => $request->attributes->get('org_id')
+        // Add user to organization
+        $createRequest = Request::create('', '', [
+            'user_id' => $user['id'],
+            'org_id' => $request->attributes->get('org_id')
         ]);
-        $orgUser->save();
+        $createResponse = (new OrgUserCreate())->userCreate($createRequest);
+        if ($createResponse->status() !== 201) {
+            return Response('org-user-create', 500);
+        }
 
         return Response('', 201);
     }
