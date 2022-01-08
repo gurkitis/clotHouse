@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -30,8 +31,8 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
         return Response('user resource authorized');
     }]);
 
-    $router->get('warehouse/auth', ['middleware' => ['auth:user', 'houseAuth'], function () {
-        return Response('warehouse has been authorized');
+    $router->get('warehouse/auth', ['middleware' => ['auth:user', 'houseAuth'], function (Request $request) {
+        return Response($request->attributes->get('house_type'));
     }]);
 }
 

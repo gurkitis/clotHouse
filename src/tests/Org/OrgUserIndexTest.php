@@ -19,19 +19,21 @@ class OrgUserIndexTest extends TestCase
      *
      * @return void
      */
-    public function test_user_index_200()
+    public function test_org_user_index_200()
     {
         $call = $this->get('org/users/?org_id=' . $this->_organization['id'], [
             'Authorization' => 'Bearer ' . $this->_userBearer
         ]);
         $call->assertResponseStatus(200);
-        $userRole = $this->_user->organizations()->first()->getRole();
         $call->seeJsonEquals([[
             'id' => $this->_owner['id'],
             'role' => 'owner'
         ], [
+            'id' => $this->_admin['id'],
+            'role' => $this->_admin->organizations()->first()->getRole()
+        ], [
             'id' => $this->_user['id'],
-            'role' => $userRole
+            'role' => $this->_user->organizations()->first()->getRole()
         ]]);
     }
 }

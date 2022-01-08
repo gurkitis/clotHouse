@@ -54,7 +54,7 @@ class UserAuth
             'org_id' => $request->get('org_id'),
             'user_id' => $user['id'],
             'role' => $orgUser->getRole(),
-            'warehouse' => $user['warehouse']
+            'house_id' => $user['warehouse']
         ]);
 
         // Update session's last request

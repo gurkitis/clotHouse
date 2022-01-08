@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\House\OrgHouse as OrgHouseFactory;
 
+/**
+ * @method static firstWhere(string $string, mixed $input)
+ */
 class OrgHouse extends Model
 {
     use HasFactory;

@@ -9,6 +9,7 @@ use Database\Factories\House\Warehouse as WarehouseFactory;
 /**
  * @method static firstWhere(string $string, mixed $warehouse)
  * @method static orderByDesc(string $string)
+ * @method static find(mixed $warehouse)
  */
 class Warehouse extends Model
 {
