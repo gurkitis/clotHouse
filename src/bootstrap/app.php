@@ -74,7 +74,8 @@ $app->configure('app');
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\UserAuth::class,
-    'orgUserAuth' => App\Http\Middleware\OrgUserAuth::class
+    'orgUserAuth' => App\Http\Middleware\OrgUserAuth::class,
+    'houseAuth' => \App\Http\Middleware\HouseAuth::class
 ]);
 
 /*

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\User\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class OrgUserAuth
 {
@@ -12,10 +13,10 @@ class OrgUserAuth
      * org-user-midl-auth
      *
      * @param Request $request
-     * @param Closure $next
+     * @param Closure|null $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, ?Closure $next)
     {
         //  Validate input
         if (empty($request->input('user_id'))) {
@@ -23,7 +24,7 @@ class OrgUserAuth
         }
 
         // Check if requested user is client
-        if ($request->get('user_id') !== $request->input('user_id')) {
+        if ($request->attributes->get('user_id') !== $request->input('user_id')) {
             $user = User::firstWhere('id', $request->input('user_id'));
 
             // Check if requested user exist
@@ -35,6 +36,10 @@ class OrgUserAuth
             if (empty($user->organizations()->firstWhere('organization', $request->get('org_id')))){
                 return Response('denied access', 403);
             }
+        }
+
+        if (empty($next) === TRUE) {
+            return Response('', 204);
         }
 
         return $next($request);
