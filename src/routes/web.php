@@ -116,4 +116,10 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
         'uses' => 'House\Edit@edit',
         'middleware' => ['auth:user', 'houseAuth']
     ]);
+
+    $router->get('org', [
+        'as' => 'house-org-index',
+        'uses' => 'House\OrgIndex@index',
+        'middleware' => 'auth:user'
+    ]);
 });
