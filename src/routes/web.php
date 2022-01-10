@@ -110,4 +110,10 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
         'uses' => 'House\Show@show',
         'middleware' => ['auth:user', 'houseAuth']
     ]);
+
+    $router->put('', [
+        'as' => 'house-edit',
+        'uses' => 'House\Edit@edit',
+        'middleware' => ['auth:user', 'houseAuth']
+    ]);
 });
