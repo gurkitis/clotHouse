@@ -2,9 +2,11 @@
 
 namespace App\Models\House;
 
+use App\Models\Cloth\ClothingUnit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\House\Warehouse as WarehouseFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static firstWhere(string $string, mixed $warehouse)
@@ -55,5 +57,13 @@ class Warehouse extends Model
     public static function newFactory(): WarehouseFactory
     {
         return WarehouseFactory::new();
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function clothingUnits(): HasMany
+    {
+        return $this->hasMany(ClothingUnit::class, 'warehouse');
     }
 }

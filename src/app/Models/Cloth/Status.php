@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\Cloth\Status as StatusFactory;
 use App\Models\Org\Organization;
+use App\Models\Cloth\ClothingUnit;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Status extends Model
 {
@@ -50,5 +52,13 @@ class Status extends Model
     public function organization()
     {
         $this->hasOne(Organization::class, 'id', 'organization');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function clothingUnits(): HasMany
+    {
+        return $this->hasMany(ClothingUnit::class, 'status');
     }
 }
