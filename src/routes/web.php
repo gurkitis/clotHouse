@@ -104,4 +104,10 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
         'uses' => 'House\OrgCreate@create',
         'middleware' => 'auth:owner'
     ]);
+
+    $router->get('', [
+        'as' => 'house-show',
+        'uses' => 'House\Show@show',
+        'middleware' => ['auth:user', 'houseAuth']
+    ]);
 });
