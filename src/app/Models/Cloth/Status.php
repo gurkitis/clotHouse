@@ -5,6 +5,7 @@ namespace App\Models\Cloth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\Cloth\Status as StatusFactory;
+use App\Models\Org\Organization;
 
 class Status extends Model
 {
@@ -44,5 +45,10 @@ class Status extends Model
     public static function newFactory(): StatusFactory
     {
         return StatusFactory::new();
+    }
+
+    public function organization()
+    {
+        $this->hasOne(Organization::class, 'id', 'organization');
     }
 }

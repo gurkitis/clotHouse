@@ -4,20 +4,19 @@ namespace App\Models\Cloth;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Database\Factories\Cloth\Category as CategoryFactory;
-use App\Models\Cloth\Clothing;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Org\Organization;
+use Database\Factories\Cloth\Clothing as ClothingFactory;
+use App\Models\Cloth\Category;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Org\Organization;
 
-class Category extends Model
+class Clothing extends Model
 {
     use HasFactory;
 
     /**
      * @var string
      */
-    protected $table = 'category';
+    protected $table = 'clothing';
 
     /**
      * @var string
@@ -33,8 +32,17 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
+        'image',
         'name',
+        'category',
         'organization'
+    ];
+
+    /**
+     * @var null[]
+     */
+    protected $attributes = [
+        'image' => NULL
     ];
 
     /**
@@ -43,19 +51,19 @@ class Category extends Model
     public $timestamps = FALSE;
 
     /**
-     * @return CategoryFactory
+     * @return ClothingFactory
      */
-    public static function newFactory(): CategoryFactory
+    public static function newFactory(): ClothingFactory
     {
-        return CategoryFactory::new();
+        return ClothingFactory::new();
     }
 
     /**
-     * @return HasMany
+     * @return HasOne
      */
-    public function clothes(): HasMany
+    public function category(): HasOne
     {
-        return $this->hasMany(Clothing::class, 'category');
+        return $this->hasOne(Category::class, 'id', 'category');
     }
 
     /**
