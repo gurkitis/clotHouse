@@ -40,6 +40,10 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
         $router->get('category/auth', ['middleware' => ['auth:user', 'catAuth'], function () {
             return Response('category resource authorized');
         }]);
+
+        $router->get('auth', ['middleware' => ['auth:user', 'clothAuth'], function () {
+            return Response('clothing resource authorized');
+        }]);
     });
 }
 
