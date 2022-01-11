@@ -8,6 +8,7 @@ use Database\Factories\Cloth\Status as StatusFactory;
 use App\Models\Org\Organization;
 use App\Models\Cloth\ClothingUnit;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Status extends Model
 {
@@ -49,9 +50,12 @@ class Status extends Model
         return StatusFactory::new();
     }
 
+    /**
+     * @return HasOne|Model|object
+     */
     public function organization()
     {
-        $this->hasOne(Organization::class, 'id', 'organization');
+        return $this->hasOne(Organization::class, 'id', 'organization')->first();
     }
 
     /**

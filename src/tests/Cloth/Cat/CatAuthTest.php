@@ -72,7 +72,7 @@ class CatAuthTest extends TestCase
     {
         $call = $this->get('clothing/category/auth/'
             . '?org_id=' . $this->_organization['id']
-            . '&cat_id=' . $this->_clothingUnits[0]->clothing()->first()['category']
+            . '&cat_id=' . $this->_clothingUnits[0]->clothing()['category']
         , [
             'Authorization' => 'Bearer ' . $this->_userBearer
         ]);

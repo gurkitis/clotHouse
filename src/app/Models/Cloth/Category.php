@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @method static orderByDesc(string $string)
  * @method static find(mixed $get)
+ * @method static where(string $string, mixed $id)
  */
 class Category extends Model
 {
@@ -63,10 +64,10 @@ class Category extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function organization(): HasOne
+    public function organization()
     {
-        return $this->hasOne(Organization::class, 'id', 'organization');
+        return $this->hasOne(Organization::class, 'id', 'organization')->first();
     }
 }

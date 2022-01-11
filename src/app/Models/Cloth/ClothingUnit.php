@@ -55,34 +55,34 @@ class ClothingUnit extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function status(): HasOne
+    public function status()
     {
-        return $this->hasOne(Status::class, 'id', 'status');
+        return $this->hasOne(Status::class, 'id', 'status')->first();
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function clothing(): HasOne
+    public function clothing()
     {
-        return $this->hasOne(Clothing::class, 'id', 'clothing');
+        return $this->hasOne(Clothing::class, 'id', 'clothing')->first();
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function warehouse(): HasOne
+    public function warehouse()
     {
-        return $this->hasOne(Warehouse::class, 'id', 'warehouse');
+        return $this->hasOne(Warehouse::class, 'id', 'warehouse')->first();
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function organization(): HasOne
+    public function organization()
     {
-        return $this->hasOne(Organization::class, 'id', 'organization');
+        return $this->hasOne(Organization::class, 'id', 'organization')->first();
     }
 }

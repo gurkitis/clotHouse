@@ -61,19 +61,19 @@ class Clothing extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function category(): HasOne
+    public function category()
     {
-        return $this->hasOne(Category::class, 'id', 'category');
+        return $this->hasOne(Category::class, 'id', 'category')->first();
     }
 
     /**
-     * @return HasOne
+     * @return HasOne|Model|object
      */
-    public function organization(): HasOne
+    public function organization()
     {
-        return $this->hasOne(Organization::class, 'id', 'organization');
+        return $this->hasOne(Organization::class, 'id', 'organization')->first();
     }
 
     /**
