@@ -13,6 +13,7 @@ use App\Models\Cloth\ClothingUnit;
 
 /**
  * @method static where(string $string, mixed $get)
+ * @method static orderByDesc(string $string)
  */
 class Clothing extends Model
 {
