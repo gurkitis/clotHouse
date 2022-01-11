@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Org\Organization;
 use App\Models\Cloth\ClothingUnit;
 
+/**
+ * @method static where(string $string, mixed $get)
+ */
 class Clothing extends Model
 {
     use HasFactory;
