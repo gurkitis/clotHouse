@@ -13,10 +13,10 @@ class CatAuth
      * cat-midl-auth
      *
      * @param Request $request
-     * @param Closure $next
+     * @param Closure|null $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next = NULL)
     {
         // Validate input data
         if (empty($request->get('cat_id')) === TRUE) {
@@ -33,6 +33,11 @@ class CatAuth
         // Validate category's organization
         if ($cat['organization'] != $request->attributes->get('org_id')) {
             return Response('access denied', 403);
+        }
+
+        // For system's internal use
+        if (empty($next) === TRUE) {
+            return Response('', 204);
         }
 
         return $next($request);
