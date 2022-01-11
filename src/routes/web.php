@@ -123,3 +123,15 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
         'middleware' => 'auth:user'
     ]);
 });
+
+$router->group(['prefix' => 'clothing'], function () use ($router) {
+
+    $router->group(['prefix' => 'category'], function () use ($router) {
+        $router->post('', [
+            'as' => 'cat-create',
+            'uses' => 'Cloth\Cat\Create@create',
+            'middleware' => 'auth:admin'
+        ]);
+    });
+
+});
