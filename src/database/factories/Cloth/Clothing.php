@@ -14,8 +14,8 @@ class Clothing extends Factory
     public function definition(): array
     {
     	return [
-    	    'name' => $this->faker->realText,
-            'image' => file_get_contents($this->faker->imageUrl),
+    	    'name' => $this->faker->firstName,
+            'image' => base64_encode(file_get_contents($this->faker->imageUrl())),
             'organization' => Organization::factory(),
             'category' => function (array $attributes) {
                 return Category::factory()->create([
