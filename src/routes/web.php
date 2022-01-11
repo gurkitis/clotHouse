@@ -152,6 +152,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
         'middleware' => 'auth:user'
     ]);
 
+    $router->put('', [
+        'as' => 'cloth-edit',
+        'uses' => 'Cloth\Edit@edit',
+        'middleware' => ['auth:admin', 'clothAuth']
+    ]);
+
     $router->group(['prefix' => 'category'], function () use ($router) {
         $router->post('', [
             'as' => 'cat-create',
