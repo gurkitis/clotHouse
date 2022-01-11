@@ -155,6 +155,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'uses' => 'Cloth\Cat\Edit@edit',
             'middleware' => ['auth:admin', 'catAuth']
         ]);
+
+        $router->delete('', [
+            'as' => 'cat-delete',
+            'uses' => 'Cloth\Cat\Delete@delete',
+            'middleware' => ['auth:admin', 'catAuth']
+        ]);
     });
 
 });
