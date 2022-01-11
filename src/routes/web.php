@@ -136,6 +136,11 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
 
 // Clothing module routes
 $router->group(['prefix' => 'clothing'], function () use ($router) {
+    $router->post('', [
+        'as' => 'cloth-create',
+        'uses' => 'Cloth\Create@create',
+        'middleware' => ['auth:admin', 'catAuth']
+    ]);
 
     $router->group(['prefix' => 'category'], function () use ($router) {
         $router->post('', [
