@@ -16,7 +16,7 @@ class ClothAuth
      * @param Closure $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next = NULL)
     {
         // Validate required input data
         if (empty($request->get('cloth_id')) === TRUE) {
@@ -33,6 +33,10 @@ class ClothAuth
         // Validate client access
         if ($cloth['organization'] != $request->attributes->get('org_id')) {
             return Response('access denied', 403);
+        }
+
+        if (empty($next) === TRUE) {
+            return Response('', 204);
         }
 
         return $next($request);
