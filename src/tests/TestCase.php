@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
+use Laravel\Lumen\Application;
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\Models\User\User;
@@ -70,9 +72,9 @@ abstract class TestCase extends BaseTestCase
     protected Warehouse $_userWarehouse;
 
     /**
-     * @var array
+     * @var Collection
      */
-    protected array $_clothingUnits;
+    protected Collection $_clothingUnits;
 
     protected const _password = 'option1234';
 
@@ -89,7 +91,7 @@ abstract class TestCase extends BaseTestCase
         $this->_clothingUnits = ClothingUnit::factory()->count(3)->create([
             'organization' => $this->_organization['id'],
             'warehouse' => $this->_organizationWarehouse['id']
-        ])->toArray();
+        ]);
 
         // Setup owner
         $this->_owner = $this->_organization->orgUsers()->first()->user()->first();
@@ -149,7 +151,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Creates the application.
      *
-     * @return \Laravel\Lumen\Application
+     * @return Application
      */
     public function createApplication()
     {

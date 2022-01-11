@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Org\Organization;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @method static orderByDesc(string $string)
+ */
 class Category extends Model
 {
     use HasFactory;
