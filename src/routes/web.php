@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// Testing middleware routes
 if (in_array(env('APP_ENV'), ['local', 'testing'])) {
     $router->group(['prefix' => 'user/auth'], function () use($router) {
         $router->get('user', ['middleware' => 'auth:user', function () {
@@ -34,8 +35,15 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
     $router->get('warehouse/auth', ['middleware' => ['auth:user', 'houseAuth'], function (Request $request) {
         return Response($request->attributes->get('house_type'));
     }]);
+
+    $router->group(['prefix' => 'clothing'], function () use ($router) {
+        $router->get('category/auth', ['middleware' => ['auth:user', 'catAuth'], function () {
+            return Response('category resource authorized');
+        }]);
+    });
 }
 
+// User module routes
 $router->group(['prefix' => 'user'], function () use ($router) {
     $router->get('', [
         'as' => 'user-show',
@@ -61,6 +69,7 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     ]);
 });
 
+// Organization module routes
 $router->group(['prefix' => 'org'], function () use ($router) {
     $router->post('', [
         'as' => 'org-create',
@@ -98,6 +107,7 @@ $router->group(['prefix' => 'org'], function () use ($router) {
     ]);
 });
 
+// Warehouse module routes
 $router->group(['prefix' => 'warehouse'], function () use ($router) {
     $router->post('org', [
         'as' => 'house-org-create',
@@ -124,6 +134,7 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
     ]);
 });
 
+// Clothing module routes
 $router->group(['prefix' => 'clothing'], function () use ($router) {
 
     $router->group(['prefix' => 'category'], function () use ($router) {
