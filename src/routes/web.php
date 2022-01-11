@@ -149,6 +149,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'uses' => 'Cloth\Cat\Index@index',
             'middleware' => 'auth:user'
         ]);
+
+        $router->put('', [
+            'as' => 'cat-edit',
+            'uses' => 'Cloth\Cat\Edit@edit',
+            'middleware' => ['auth:admin', 'catAuth']
+        ]);
     });
 
 });
