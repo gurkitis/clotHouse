@@ -158,6 +158,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
         'middleware' => ['auth:admin', 'clothAuth']
     ]);
 
+    $router->delete('', [
+        'as' => 'cloth-edit',
+        'uses' => 'Cloth\Delete@delete',
+        'middleware' => ['auth:admin', 'clothAuth']
+    ]);
+
     $router->group(['prefix' => 'category'], function () use ($router) {
         $router->post('', [
             'as' => 'cat-create',
