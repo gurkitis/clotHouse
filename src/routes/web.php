@@ -146,6 +146,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
         'middleware' => ['auth:admin', 'catAuth']
     ]);
 
+    $router->get('', [
+        'as' => 'cloth-index',
+        'uses' => 'Cloth\Index@index',
+        'middleware' => 'auth:user'
+    ]);
+
     $router->group(['prefix' => 'category'], function () use ($router) {
         $router->post('', [
             'as' => 'cat-create',
