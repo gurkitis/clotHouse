@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\User\Create;
 use App\Models\House\Warehouse;
 use App\Models\Org\OrgUser;
+use App\Models\Cloth\ClothingUnit;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -68,6 +69,11 @@ abstract class TestCase extends BaseTestCase
      */
     protected Warehouse $_userWarehouse;
 
+    /**
+     * @var array
+     */
+    protected array $_clothingUnits;
+
     protected const _password = 'option1234';
 
     /**
@@ -78,6 +84,12 @@ abstract class TestCase extends BaseTestCase
         // Setup organization
         $this->_organization = Organization::factory()->create();
         $this->_organizationWarehouse = Warehouse::find($this->_organization->orgHouses()->first()['warehouse']);
+
+        // Create clothing units
+        $this->_clothingUnits = ClothingUnit::factory()->count(3)->create([
+            'organization' => $this->_organization['id'],
+            'warehouse' => $this->_organizationWarehouse['id']
+        ])->toArray();
 
         // Setup owner
         $this->_owner = $this->_organization->orgUsers()->first()->user()->first();
