@@ -15,9 +15,13 @@ class Clothing extends Factory
     {
     	return [
     	    'name' => $this->faker->realText,
-            'image' => $this->faker->image,
-            'category' => Category::factory(),
-            'organization' => Organization::factory()
+            'image' => file_get_contents($this->faker->imageUrl),
+            'organization' => Organization::factory(),
+            'category' => function (array $attributes) {
+                return Category::factory()->create([
+                    'organization' => $attributes['organization']
+                ])['id'];
+            },
     	];
     }
 }

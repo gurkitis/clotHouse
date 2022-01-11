@@ -8,6 +8,7 @@ use App\Models\Cloth\Status;
 use App\Models\Cloth\Clothing;
 use App\Models\House\Warehouse;
 use App\Models\Org\Organization;
+use App\Models\House\OrgHouse;
 
 class ClothingUnit extends Factory
 {
@@ -17,10 +18,22 @@ class ClothingUnit extends Factory
     {
     	return [
     	    'identificator' => $this->faker->unique()->md5,
-            'status' => Status::factory(),
-            'clothing' => Clothing::factory(),
-            'warehouse' => Warehouse::factory(),
-            'organization' => Organization::factory()
+            'organization' => Organization::factory(),
+            'status' => function (array $attributes) {
+                return Status::factory()->create([
+                    'organization' => $attributes['organization']
+                ])['id'];
+            },
+            'clothing' => function (array $attributes) {
+                return Clothing::factory()->create([
+                    'organization' => $attributes['organization']
+                ])['id'];
+            },
+            'warehouse' => function (array $attributes) {
+                return OrgHouse::factory()->create([
+                    'organization' => $attributes['organization']
+                ])['warehouse'];
+            },
     	];
     }
 }
