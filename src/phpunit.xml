@@ -17,6 +17,7 @@
         <testsuite name="clothModule">
             <directory prefix="Cloth" suffix="Test.php" phpVersion="7.4">./tests/Cloth</directory>
             <directory prefix="Cat" suffix="Test.php" phpVersion="7.4">./tests/Cloth/Cat</directory>
+            <directory prefix="Stat" suffix="Test.php" phpVersion="7.4">./tests/Cloth/Stat</directory>
         </testsuite>
     </testsuites>
     <php>
