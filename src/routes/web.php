@@ -208,6 +208,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'uses' => 'Cloth\Stat\Index@index',
             'middleware' => 'auth:user'
         ]);
+
+        $router->put('', [
+           'as' => 'stat-edit',
+           'uses' => 'Cloth\Stat\Edit@edit',
+           'middleware' => ['auth:admin', 'statAuth']
+        ]);
     });
 
 });
