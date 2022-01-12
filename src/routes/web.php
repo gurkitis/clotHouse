@@ -202,6 +202,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'uses' => 'Cloth\Stat\Create@create',
             'middleware' => 'auth:admin'
         ]);
+
+        $router->get('', [
+            'as' => 'stat-index',
+            'uses' => 'Cloth\Stat\Index@index',
+            'middleware' => 'auth:user'
+        ]);
     });
 
 });
