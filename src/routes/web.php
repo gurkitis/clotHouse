@@ -46,6 +46,10 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
         $router->get('auth', ['middleware' => ['auth:user', 'clothAuth'], function () {
             return Response('clothing resource authorized');
         }]);
+
+        $router->get('status/auth', ['middleware' => ['auth:user', 'statAuth'], function () {
+            return Response('status resource authorized');
+        }]);
     });
 }
 
