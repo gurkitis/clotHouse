@@ -214,6 +214,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
            'uses' => 'Cloth\Stat\Edit@edit',
            'middleware' => ['auth:admin', 'statAuth']
         ]);
+
+        $router->delete('', [
+            'as' => 'stat-delete',
+            'uses' => 'Cloth\Stat\Delete@delete',
+            'middleware' => ['auth:admin', 'statAuth']
+        ]);
     });
 
 });
