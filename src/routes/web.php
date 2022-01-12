@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
-/** @var \Laravel\Lumen\Routing\Router $router */
+use Laravel\Lumen\Routing\Router;
+
+/** @var Router $router */
 
 /*
 |--------------------------------------------------------------------------
@@ -189,7 +191,7 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'middleware' => ['auth:admin', 'catAuth']
         ]);
     });
-    
+
     $router->group(['prefix' => 'status'], function () use ($router) {
         $router->post('', [
             'as' => 'stat-create',
