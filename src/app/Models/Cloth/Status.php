@@ -10,6 +10,9 @@ use App\Models\Cloth\ClothingUnit;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @method static orderByDesc(string $string)
+ */
 class Status extends Model
 {
     use HasFactory;
