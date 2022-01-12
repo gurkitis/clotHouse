@@ -189,5 +189,13 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'middleware' => ['auth:admin', 'catAuth']
         ]);
     });
+    
+    $router->group(['prefix' => 'status'], function () use ($router) {
+        $router->post('', [
+            'as' => 'stat-create',
+            'uses' => 'Cloth\Stat\Create@create',
+            'middleware' => 'auth:admin'
+        ]);
+    });
 
 });
