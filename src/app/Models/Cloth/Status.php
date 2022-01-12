@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @method static orderByDesc(string $string)
  * @method static find(mixed $get)
+ * @method static where(string $string, mixed $id)
  */
 class Status extends Model
 {
