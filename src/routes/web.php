@@ -146,6 +146,12 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
         'uses' => 'House\OrgIndex@index',
         'middleware' => 'auth:user'
     ]);
+
+    $router->delete('org', [
+        'as' => 'house-org-delete',
+        'uses' => 'House/OrgDelete@delete',
+        'middleware' => ['auth:owner', 'houseAuth']
+    ]);
 });
 
 // Clothing module routes
