@@ -20,16 +20,7 @@ class Exchange extends Migration
             $table->foreignId('clothing_unit')->nullable(FALSE)->references('id')->on('clothing_unit')->cascadeOnDelete();
             $table->foreignId('issuer_warehouse')->nullable()->references('id')->on('warehouse')->cascadeOnDelete();
             $table->foreignId('receiver_warehouse')->nullable()->references('id')->on('warehouse')->cascadeOnDelete();
+            $table->foreignId('facilitator')->nullable(FALSE)->references('id')->on('user')->cascadeOnDelete();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('exchange');
     }
 }

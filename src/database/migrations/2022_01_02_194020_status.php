@@ -19,14 +19,4 @@ class Status extends Migration
             $table->foreignId('organization')->nullable(FALSE)->references('id')->on('organization')->cascadeOnDelete();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('status');
-    }
 }

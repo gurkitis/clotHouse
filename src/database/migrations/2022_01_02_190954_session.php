@@ -20,14 +20,4 @@ class Session extends Migration
             $table->foreignId('user')->nullable(FALSE)->references('id')->on('user')->cascadeOnDelete();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('session');
-    }
 }

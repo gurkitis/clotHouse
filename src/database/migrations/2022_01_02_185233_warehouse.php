@@ -18,14 +18,4 @@ class Warehouse extends Migration
             $table->string('address', 255)->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('warehouse');
-    }
 }

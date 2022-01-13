@@ -22,14 +22,4 @@ class User extends Migration
             $table->foreignId('warehouse')->nullable(FALSE)->references('id')->on('warehouse')->cascadeOnDelete();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('user');
-    }
 }

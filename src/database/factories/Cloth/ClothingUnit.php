@@ -9,6 +9,8 @@ use App\Models\Cloth\Clothing;
 use App\Models\House\Warehouse;
 use App\Models\Org\Organization;
 use App\Models\House\OrgHouse;
+use App\Models\Trans\Exchange;
+use App\Models\Org\OrgUser;
 
 class ClothingUnit extends Factory
 {
@@ -35,5 +37,33 @@ class ClothingUnit extends Factory
                 ])['warehouse'];
             },
     	];
+    }
+
+    /**
+     * @return ClothingUnit
+     */
+    public function configure(): ClothingUnit
+    {
+        return $this->afterMaking(function (Model $clothingUnit) {
+            Exchange::factory()->make([
+                'issuer_warehouse' => NULL,
+                'receiver_warehouse' => $clothingUnit['warehouse'],
+                'facilitator' => OrgUser::where('organization', $clothingUnit['organization'])
+                    ->where('is_owner', TRUE)
+                    ->first()['user'],
+                'clothing_unit' => $clothingUnit['id'],
+                'information' => "clothing unit's initialization"
+            ]);
+        })->afterCreating(function (Model $clothingUnit) {
+            Exchange::factory()->create([
+                'issuer_warehouse' => NULL,
+                'receiver_warehouse' => $clothingUnit['warehouse'],
+                'facilitator' => OrgUser::where('organization', $clothingUnit['organization'])
+                    ->where('is_owner', TRUE)
+                    ->first()['user'],
+                'clothing_unit' => $clothingUnit['id'],
+                'information' => "clothing unit's initialization"
+            ]);
+        });
     }
 }

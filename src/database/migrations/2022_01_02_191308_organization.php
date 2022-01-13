@@ -18,14 +18,4 @@ class Organization extends Migration
             $table->string('name', 255)->nullable(FALSE)->unique();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('organization');
-    }
 }
