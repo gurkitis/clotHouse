@@ -252,3 +252,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
         ]);
     });
 });
+
+// Transaction module
+$router->group(['prefix' => 'report'], function () use ($router) {
+    $router->post('transaction', [
+        'as' => 'trans-create',
+        'uses' => 'Trans\Create@create',
+        'middleware' => ['auth:admin', 'unitAuth', 'houseAuth']
+    ]);
+});
