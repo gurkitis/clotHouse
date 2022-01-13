@@ -3,6 +3,7 @@
 namespace App\Models\House;
 
 use App\Models\Cloth\ClothingUnit;
+use App\Models\Trans\Exchange;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\House\Warehouse as WarehouseFactory;
@@ -65,5 +66,21 @@ class Warehouse extends Model
     public function clothingUnits(): HasMany
     {
         return $this->hasMany(ClothingUnit::class, 'warehouse');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function issuerExchange(): HasMany
+    {
+        return $this->hasMany(Exchange::class, 'issuer_warehouse', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function receiverExchange(): HasMany
+    {
+        return $this->hasMany(Exchange::class, 'receiver_warehouse', 'id');
     }
 }

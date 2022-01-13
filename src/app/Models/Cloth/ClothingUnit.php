@@ -2,9 +2,11 @@
 
 namespace App\Models\Cloth;
 
+use App\Models\Trans\Exchange;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\Cloth\ClothingUnit as ClothingUnitFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Cloth\Status;
 use App\Models\Cloth\Clothing;
@@ -89,5 +91,13 @@ class ClothingUnit extends Model
     public function organization()
     {
         return $this->hasOne(Organization::class, 'id', 'organization')->first();
+    }
+
+    /**+
+     * @return HasMany
+     */
+    public function exchanges(): HasMany
+    {
+        return $this->hasMany(Exchange::class, 'id', 'clothing_unit');
     }
 }

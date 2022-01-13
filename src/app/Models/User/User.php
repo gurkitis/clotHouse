@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 use App\Models\House\Warehouse;
 use App\Models\Org\OrgUser;
+use App\Models\Trans\Exchange;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,6 +15,7 @@ use Database\Factories\User\User as UserFactory;
  * @method static firstWhere(string $string, array|string|null $post)
  * @method static orderByDesc(string $string)
  * @method static orderByAsc(string $string)
+ * @method static find(mixed $facilitator)
  */
 class User extends Model
 {
@@ -87,5 +89,13 @@ class User extends Model
     public function session(): HasOne
     {
         return $this->hasOne(Session::class, 'user');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function facilitator(): HasMany
+    {
+        return $this->hasMany(Exchange::class, 'facilitator', 'id');
     }
 }
