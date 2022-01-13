@@ -48,4 +48,12 @@ class OrgHouse extends Model
     {
         return OrgHouseFactory::new();
     }
+
+    /**
+     * @return Model
+     */
+    public function warehouse(): Model
+    {
+        return $this->hasOne(Warehouse::class, 'id', 'warehouse')->first();
+    }
 }

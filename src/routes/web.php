@@ -149,7 +149,7 @@ $router->group(['prefix' => 'warehouse'], function () use ($router) {
 
     $router->delete('org', [
         'as' => 'house-org-delete',
-        'uses' => 'House/OrgDelete@delete',
+        'uses' => 'House\OrgDelete@delete',
         'middleware' => ['auth:owner', 'houseAuth']
     ]);
 });
