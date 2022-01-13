@@ -169,7 +169,7 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
     ]);
 
     $router->delete('', [
-        'as' => 'cloth-edit',
+        'as' => 'cloth-delete',
         'uses' => 'Cloth\Delete@delete',
         'middleware' => ['auth:admin', 'clothAuth']
     ]);
@@ -217,6 +217,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'as' => 'unit-org-index',
             'uses' => 'Cloth\Unit\OrgIndex@index',
             'middleware' => 'auth:user'
+        ]);
+
+        $router->put('', [
+            'as' => 'unit-edit',
+            'uses' => 'Cloth\Unit\Edit@edit',
+            'middleware' => ['auth:admin', 'unitAuth']
         ]);
     });
 
