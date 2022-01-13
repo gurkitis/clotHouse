@@ -11,6 +11,9 @@ use App\Models\Cloth\Clothing;
 use App\Models\House\Warehouse;
 use App\Models\Org\Organization;
 
+/**
+ * @method static orderByDesc(string $string)
+ */
 class ClothingUnit extends Model
 {
     use HasFactory;
