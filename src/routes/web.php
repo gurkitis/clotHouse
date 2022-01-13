@@ -200,6 +200,14 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
         ]);
     });
 
+    $router->group(['prefix' => 'unit'], function () use ($router) {
+        $router->get('', [
+            'as' => 'unit-index',
+            'uses' => 'Cloth\Unit\Index@index',
+            'middleware' => 'auth:user'
+        ]);
+    });
+
     $router->group(['prefix' => 'status'], function () use ($router) {
         $router->post('', [
             'as' => 'stat-create',
@@ -225,5 +233,4 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'middleware' => ['auth:admin', 'statAuth']
         ]);
     });
-
 });
