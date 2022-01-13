@@ -50,6 +50,10 @@ if (in_array(env('APP_ENV'), ['local', 'testing'])) {
         $router->get('status/auth', ['middleware' => ['auth:user', 'statAuth'], function () {
             return Response('status resource authorized');
         }]);
+
+        $router->get('unit/auth', ['middleware' => ['auth:user', 'unitAuth'], function () {
+            return Response('clothing unit resource authorized');
+        }]);
     });
 }
 
