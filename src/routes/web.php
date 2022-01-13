@@ -201,6 +201,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
     });
 
     $router->group(['prefix' => 'unit'], function () use ($router) {
+        $router->post('', [
+            'as' => 'unit-create',
+            'uses' => 'Cloth\Unit\Create@create',
+            'middleware' => ['auth:admin', 'clothAuth', 'statAuth', 'houseAuth']
+        ]);
+        
         $router->get('', [
             'as' => 'unit-index',
             'uses' => 'Cloth\Unit\Index@index',
