@@ -20,10 +20,10 @@ class HouseAuth
      * house-midl-auth
      *
      * @param Request $request
-     * @param Closure $next
+     * @param Closure|null $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next = NULL)
     {
         // Validate required input data fields
         if (empty($request->input('house_id'))) {
@@ -38,6 +38,10 @@ class HouseAuth
                 // Check if warehouse is owned by client's organization
                 if ($house['organization'] == $request->attributes->get('org_id')) {
                     $request->attributes->set('house_type', self::house_type['org']);
+                    // For system's internal use
+                    if (empty($next) === TRUE) {
+                        return Response('', 204);
+                    }
                     return $next($request);
                 }
                 // Warehouse is owned in different organization
@@ -67,6 +71,11 @@ class HouseAuth
         }
 
         $request->attributes->set('house_type', self::house_type['user']);
+
+        // For system's internal use
+        if (empty($next) === TRUE) {
+            return Response('', 204);
+        }
 
         return $next($request);
     }

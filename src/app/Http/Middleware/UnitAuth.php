@@ -35,6 +35,11 @@ class UnitAuth
             return Response('access denied', 403);
         }
 
+        // For system's internal use
+        if (empty($next) === TRUE) {
+            return Response('', 204);
+        }
+
         return $next($request);
     }
 }
