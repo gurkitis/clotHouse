@@ -72,7 +72,7 @@ class UnitEditTest extends TestCase
             'identificator' => $id,
             'status' => $this->_clothingUnits[1]['status'],
             'clothing' => $this->_clothingUnits[0]['clothing'],
-            'warehouse' => $this->_organizationWarehouse['id'],
+            'warehouse' => $this->_userWarehouse['id'],
             'organization' => $this->_organization['id']
         ]);
         $this->seeInDatabase('clothing_unit', [
@@ -80,7 +80,7 @@ class UnitEditTest extends TestCase
             'identificator' => $id,
             'status' => $this->_clothingUnits[1]['status'],
             'clothing' => $this->_clothingUnits[0]['clothing'],
-            'warehouse' => $this->_organizationWarehouse['id'],
+            'warehouse' => $this->_userWarehouse['id'],
             'organization' => $this->_organization['id']
         ]);
     }

@@ -26,6 +26,6 @@ class UnitHouseIndexTest extends TestCase
         );
 
         $call->assertResponseStatus(200);
-        $call->seeJsonEquals($this->_clothingUnits->toArray());
+        $call->seeJsonEquals(ClothingUnit::where('warehouse', $this->_organizationWarehouse['id'])->get()->toArray());
     }
 }
