@@ -78,7 +78,8 @@ $app->routeMiddleware([
     'houseAuth' => \App\Http\Middleware\HouseAuth::class,
     'catAuth' => \App\Http\Middleware\CatAuth::class,
     'clothAuth' => \App\Http\Middleware\ClothAuth::class,
-    'statAuth' => \App\Http\Middleware\StatAuth::class
+    'statAuth' => \App\Http\Middleware\StatAuth::class,
+    'unitAuth' => \App\Http\Middleware\UnitAuth::class
 ]);
 
 /*

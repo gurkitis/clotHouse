@@ -13,6 +13,7 @@ use App\Models\Org\Organization;
 
 /**
  * @method static orderByDesc(string $string)
+ * @method static find(mixed $get)
  */
 class ClothingUnit extends Model
 {
