@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Database\Factories\Trans\Exchange as ExchangeFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @method static orderByDesc(string $string)
+ */
 class Exchange extends Model
 {
     use HasFactory;
