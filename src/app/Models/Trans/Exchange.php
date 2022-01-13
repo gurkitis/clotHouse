@@ -17,7 +17,7 @@ class Exchange extends Model
     /**
      * @var string
      */
-    protected $table = 'status';
+    protected $table = 'exchange';
 
     /**
      * @var string
@@ -38,7 +38,7 @@ class Exchange extends Model
         'clothing_unit',
         'receiver_warehouse',
         'issuer_warehouse',
-        'facilitator'
+        'facilitator',
     ];
 
     /**

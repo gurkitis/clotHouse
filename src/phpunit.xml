@@ -20,6 +20,9 @@
             <directory prefix="Unit" suffix="Test.php" phpVersion="7.4">./tests/Cloth/Unit</directory>
             <directory prefix="Stat" suffix="Test.php" phpVersion="7.4">./tests/Cloth/Stat</directory>
         </testsuite>
+        <testsuite name="transModule">
+            <directory prefix="Trans" suffix="Test.php" phpVersion="7.4">./tests/Trans</directory>
+        </testsuite>
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
