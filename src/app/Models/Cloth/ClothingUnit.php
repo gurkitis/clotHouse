@@ -14,6 +14,7 @@ use App\Models\Org\Organization;
 /**
  * @method static orderByDesc(string $string)
  * @method static find(mixed $get)
+ * @method static where(string $string, mixed $id)
  */
 class ClothingUnit extends Model
 {
