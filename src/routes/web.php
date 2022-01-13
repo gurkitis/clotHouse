@@ -212,6 +212,12 @@ $router->group(['prefix' => 'clothing'], function () use ($router) {
             'uses' => 'Cloth\Unit\HouseIndex@index',
             'middleware' => ['auth:user', 'houseAuth']
         ]);
+
+        $router->get('org', [
+            'as' => 'unit-org-index',
+            'uses' => 'Cloth\Unit\OrgIndex@index',
+            'middleware' => 'auth:user'
+        ]);
     });
 
     $router->group(['prefix' => 'status'], function () use ($router) {
