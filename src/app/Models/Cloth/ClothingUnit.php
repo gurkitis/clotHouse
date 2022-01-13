@@ -39,7 +39,7 @@ class ClothingUnit extends Model
      * @var array
      */
     protected $fillable = [
-        'idnetificator',
+        'identificator',
         'status',
         'clothing',
         'warehouse',
