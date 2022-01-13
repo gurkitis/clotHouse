@@ -260,4 +260,10 @@ $router->group(['prefix' => 'report'], function () use ($router) {
         'uses' => 'Trans\Create@create',
         'middleware' => ['auth:admin', 'unitAuth', 'houseAuth']
     ]);
+
+    $router->get('history', [
+        'as' => 'trans-index',
+        'uses' => 'Trans\Index@index',
+        'middleware' => ['auth:admin', 'unitAuth']
+    ]);
 });
