@@ -11,6 +11,7 @@ use App\Http\Controllers\User\Create;
 use App\Models\House\Warehouse;
 use App\Models\Org\OrgUser;
 use App\Models\Cloth\ClothingUnit;
+use App\Models\Trans\Exchange;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -146,6 +147,15 @@ abstract class TestCase extends BaseTestCase
             ->update([
                 'is_admin' => FALSE
             ]);
+
+        // Create additional clothing unit transaction
+        Exchange::factory()->create([
+            'facilitator' => $this->_admin['id'],
+            'issuer_warehouse' => $this->_clothingUnits[0]->exchanges()->first()['receiver_warehouse'],
+            'receiver_warehouse' => $this->_userWarehouse['id'],
+            'clothing_unit' => $this->_clothingUnits[0]['id']
+        ]);
+        $this->_clothingUnits[0]->update(['warehouse' => $this->_userWarehouse['id']]);
     }
 
     /**

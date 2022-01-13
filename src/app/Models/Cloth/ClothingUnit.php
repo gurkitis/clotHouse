@@ -98,6 +98,6 @@ class ClothingUnit extends Model
      */
     public function exchanges(): HasMany
     {
-        return $this->hasMany(Exchange::class, 'id', 'clothing_unit');
+        return $this->hasMany(Exchange::class, 'clothing_unit', 'id');
     }
 }
