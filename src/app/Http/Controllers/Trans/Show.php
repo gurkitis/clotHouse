@@ -20,10 +20,10 @@ class Show extends Controller
     {
         // Validate required input data fields
         $rules = [
-            'unit_id' => 'required_without:user_id,issuer_house_id,receiver_house_id|integer|exists:clothing_unit,id',
-            'user_id' => 'required_without:unit_id,issuer_house_id,receiver_house_id|integer|exists:user,id',
-            'issuer_house_id' => 'required_without:unit_id,user_id,receiver_house_id|integer|exists:warehouse,id',
-            'receiver_house_id' => 'required_without:unit_id,user_id,issuer_house_id|integer|exists:warehouse,id',
+            'unit_id' => 'required_without_all:user_id,issuer_house_id,receiver_house_id|integer|exists:clothing_unit,id',
+            'user_id' => 'required_without_all:unit_id,issuer_house_id,receiver_house_id|integer|exists:user,id',
+            'issuer_house_id' => 'required_without_all:unit_id,user_id,receiver_house_id|integer|exists:warehouse,id',
+            'receiver_house_id' => 'required_without_all:unit_id,user_id,issuer_house_id|integer|exists:warehouse,id',
         ];
         try {
             $this->validate($request, $rules);
@@ -54,7 +54,7 @@ class Show extends Controller
                     $field = 'receiver_warehouse';
                     break;
             }
-            $trans->where($field, '=', $request->input($key));
+            $trans = $trans->where($field, '=', $request->input($key));
         }
 
         return Response($trans->toJson(), 200);

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @method static orderByDesc(string $string)
  * @method static where(string $string, $id)
+ * @method static find(mixed $input)
  */
 class Exchange extends Model
 {

@@ -21,9 +21,9 @@ class Edit extends Controller
         // Validate input data fields
         $rules = [
             'trans_id' => 'required|integer|exists:exchange,id',
-            'information' => 'required_without:issuer_house_id,receiver_house_id|string',
-            'issuer_house_id' => 'required_without:information,receiver_house_id|exists:warehouse,id',
-            'receiver_house_id' => 'required_without:information,issuer_house_id|exists:warehouse,id'
+            'information' => 'required_without_all:issuer_house_id,receiver_house_id|string',
+            'issuer_house_id' => 'required_without_all:information,receiver_house_id|exists:warehouse,id',
+            'receiver_house_id' => 'required_without_all:information,issuer_house_id|exists:warehouse,id'
         ];
         try {
             $this->validate($request, $rules);

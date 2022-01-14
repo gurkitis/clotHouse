@@ -24,7 +24,7 @@ class Create extends Controller
         // Validate input data
         try {
             $this->validate($request, [
-                'inforamtion' => 'filled|string'
+                'information' => 'filled|string'
             ]);
         } catch (ValidationException $e) {
             if (env('APP_ENV') === 'local') {
@@ -38,11 +38,11 @@ class Create extends Controller
         $unit = ClothingUnit::find($request->query('unit_id'));
 
         // Edit clothing unit warehouse
-        $editRequest = Request::create('?unit_id=' . $unit['id'], 'PUT', [
+        $editRequest = Request::create('/?unit_id=' . $unit['id'], 'PUT', [
             'warehouse' => $request->query('house_id')
         ]);
         $editRequest->attributes = $request->attributes;
-        $editResponse = (new Edit())->edit($request);
+        $editResponse = (new Edit())->edit($editRequest);
         if ($editResponse->status() != 200) {
             return Response($editResponse->content(), 500);
         }

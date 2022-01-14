@@ -8,6 +8,7 @@ use Database\Factories\House\OrgHouse as OrgHouseFactory;
 
 /**
  * @method static firstWhere(string $string, mixed $input)
+ * @method static where(string $string, mixed $get)
  */
 class OrgHouse extends Model
 {
