@@ -119,6 +119,12 @@ $router->group(['prefix' => 'org'], function () use ($router) {
         'uses' => 'Org\RemoveAdmin@removeAdmin',
         'middleware' => ['auth:owner', 'orgUserAuth']
     ]);
+
+    $router->delete('', [
+        'as' => 'org-delete',
+        'uses' => 'Org\Delete@delete',
+        'middleware' => 'auth:owner'
+    ]);
 });
 
 // Warehouse module routes
