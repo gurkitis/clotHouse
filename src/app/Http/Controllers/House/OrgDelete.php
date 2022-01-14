@@ -25,7 +25,9 @@ class OrgDelete extends Controller
     public function delete(Request $request): Response
     {
         // Check if delete warehouse isn't last
-        if (count(OrgHouse::where('organization', $request->attributes->get('org_id'))->get()->toArray()) < 2) {
+        if (count(OrgHouse::where('organization', $request->attributes->get('org_id'))->get()->toArray()) < 2
+            && empty($request->query('org_id')) === FALSE
+        ) {
             return Response('cannot delete last warehouse, please delete organization', 400);
         }
 
